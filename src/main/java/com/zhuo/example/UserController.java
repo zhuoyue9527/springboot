@@ -10,7 +10,7 @@ public class UserController {
 	@RequestMapping(value ="/user/home")
 	@ResponseBody
 	public String home() {
-		System.out.println("/-/-----------------------");
+		System.out.println("------UserController--home---------------");
 		return "user home";
 	}
 }
