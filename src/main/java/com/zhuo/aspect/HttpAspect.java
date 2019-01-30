@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class HttpAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(HttpAspect.class);
@@ -27,18 +27,16 @@ public class HttpAspect {
 	public void doBefore(JoinPoint point) {
 		ServletRequestAttributes attributes =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest  request = (HttpServletRequest) attributes.getRequest();
+		logger.info("获取访问信息 controller方法之前");
+		
 		//url
 		logger.info("url={}",request.getRequestURL());
-		
 		//method
 		logger.info("method={}",request.getMethod());
-		
 		//ip
 		logger.info("ip={}",request.getRemoteAddr());
-		
 		//class_method
 		logger.info("class_method={}",point.getSignature().getDeclaringTypeName()+"."+point.getSignature().getName());
-		
 		//参数
 		logger.info("args={}",point.getArgs());
 				
@@ -47,12 +45,12 @@ public class HttpAspect {
 	
 	@After("log()")
 	public void doAfter() {
-		logger.info("22222222222");
+		logger.info("controller 方法之后执行");
 	}
 	
 	@AfterReturning(returning ="object" ,pointcut="log()")
 	public void doAfterReturning(Object object) {
-		logger.info("response={}",object.toString());
+		logger.info("controller 返回值 response={}",object.toString());
 	}
 	
 }
