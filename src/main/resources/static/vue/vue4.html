@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>v-if,v-show,v-for指令</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 		删除 -->
+		<div v-if="show">hello world</div> 
+		<!-- 		隐藏 -->
+		<div v-show="show">hello world</div>
+	  	<button @click="handleClick">toggle</button>
+	  	<ul>
+	  		<li v-for="(item,index) of list" :key="index">{{item}}</li>
+	  	</ul>
+	</div>
+	<script >
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+			  show: true,
+			  list: [1,1,3]
+		  },
+		  methods:{
+			  handleClick:function(){
+				  this.show = ! this.show;
+			  }
+			  
+		  }
+		})
+	</script>
+	
+</body>
+</html>

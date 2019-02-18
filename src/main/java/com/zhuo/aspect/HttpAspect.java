@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class HttpAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(HttpAspect.class);
@@ -39,8 +39,6 @@ public class HttpAspect {
 		logger.info("class_method={}",point.getSignature().getDeclaringTypeName()+"."+point.getSignature().getName());
 		//参数
 		logger.info("args={}",point.getArgs());
-				
-		
 	}
 	
 	@After("log()")
