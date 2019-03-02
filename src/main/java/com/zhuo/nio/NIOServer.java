@@ -1,4 +1,4 @@
-package com.zhuo.nio;
+ package com.zhuo.nio;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -40,7 +40,6 @@ public class NIOServer {
 	}
 	
 	public void listen() {
-		
 		try {
 			//轮询
 			while(true) {
@@ -57,6 +56,8 @@ public class NIOServer {
 				}
 			
 			}
+		}catch(Exception e) {
+			
 		}
 	}
 	
@@ -80,7 +81,8 @@ public class NIOServer {
 			buffer.clear();
 			
 		}else if(key.isWritable()){
-			
+			SocketChannel client =  (SocketChannel) key.channel();
+			client.write(buffer.wrap("hello world".getBytes()));
 		}
 	}
 	public static void main(String[] args) {
