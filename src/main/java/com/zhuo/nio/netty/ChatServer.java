@@ -15,10 +15,13 @@ public class ChatServer {
 	private int port = 80;
 	
 	public void start() {
+		//boss线程
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
+		//worker线程
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 	
 		try {
+			//启动引擎
 			ServerBootstrap b  = new ServerBootstrap();
 			b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
 			.option(ChannelOption.SO_BACKLOG, 1024)
