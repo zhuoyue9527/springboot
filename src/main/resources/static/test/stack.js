@@ -31,6 +31,52 @@ function Stack(){
 		return items =[] ;
 	}
 }
+//用栈表示队列
+function queueByStack(){
+	var stack_1 = new Stack() ;
+	var stack_2 = new Stack() ;
+	
+	
+	this.enqueue = function(data){
+		stack_1.push(data);
+	}
+	
+	this.dequeue = function(){
+		if(!stack_2.isEmpty){
+			return stack_2.pop();
+		}else{
+			if(stack_1.isEmpty){
+				return null ;
+			}
+			while(!stack_1.isEmpty){
+				stack_2.push(stack_1.pop());
+			}
+		}
+		return stack_2.pop();
+		
+	}
+	
+	this.head = function(){
+		if(stack_2.isEmpty){
+			if(stack_1.isEmpty){
+				return null ;
+			}
+			while(!stack_1.isEmpty){
+				stack_2.push(stack_1.pop());
+			}
+			
+		}
+		return stack_2.top();
+	}
+	
+	this.tail = function(){
+		
+	}
+	
+	
+}
+
+
 //计算后缀表达式
 function calc_exp(exp){
 	var stack =new Stack();
