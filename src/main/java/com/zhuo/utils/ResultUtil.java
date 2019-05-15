@@ -15,6 +15,7 @@ public class ResultUtil {
 	public static ResultMsg success() {
 		return success(null);
 	}
+	
 	public static ResultMsg error(Integer code ,String msg) {
 		ResultMsg result = new ResultMsg();
 		result.setCode(code);

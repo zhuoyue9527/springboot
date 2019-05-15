@@ -139,7 +139,7 @@ function findindex(head,k){
 	var step = k ;
 	
 	//让快的先走
-	while(k > 0 ){
+	while(step > 0 && fast){
 		fast = fast.next ;
 		step -= 1 ;
 	}
@@ -155,7 +155,7 @@ function findindex(head,k){
 	}
 	return slow.data ;
 }
-
+//取中间值
 function find_middle(head){
 	var fast = head ;
 	var slow = head ;
@@ -171,8 +171,8 @@ function find_middle(head){
 //双向链表
 function DoubleLinkList(){
 	var Node = function(data){
-		this.data = data ;
-		this.next = null ;
+		this.data = data ; //数据
+		this.next = null ; //后驱指针
 		this.pre =null ;
 	}
 	

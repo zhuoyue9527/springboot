@@ -1,8 +1,10 @@
 package com.zhuo.test;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,4 +34,18 @@ public class LambdaTest {
 		logger.info("双冒号操作符 ");
 		players.forEach(System.out::println);
 	}
+	
+	@Test
+	public void testString() {
+		String ss = String.format("获取字典%s", "aa");
+		System.out.println(ss);
+	}
+	
+	@Test
+	public void testSub() {
+		String s = "你好txt_s00_dmfm15" ;
+		System.out.println(s.toUpperCase());
+	}
+	
+	
 }
