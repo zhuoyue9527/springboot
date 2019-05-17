@@ -22,8 +22,8 @@ import io.swagger.annotations.ApiOperation;
  */
 @Api(value="用户接口",tags="用户接口")
 @RestController
-@RequestMapping("/swaggerController")
-public class SwaggerController {
+@RequestMapping("/demoController")
+public class DemoController {
  
     @ApiOperation(value = "新增用户" ,  notes="新增注册")
     @GetMapping(value="/createUser")
