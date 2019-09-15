@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<style type="text/css">
+	.inner {
+		height: 150px;
+		background-color: darkcyan;
+	}
+</style>
+</head>
+<body>
+	 
+	<div id="app">
+		 <h4> {{msg}}</h4>
+		 <input type="text" v-model="msg" />
+	</div>
+	
+	<div>
+		<h1> 简易计算器</h1>
+		
+	</div>
+</body>
+
+<script  >
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			msg:'hello' 
+		},
+		methods: {
+			 
+			 
+			
+		}
+	})
+</script>
+</html>

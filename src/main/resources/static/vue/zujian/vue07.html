@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	.ball{
+		width:15px;
+		height:15px;
+		background-color: red;
+		border-radius:50%;
+	}
+	  
+</style>
+</head>
+<body>
+	
+	<!-- 这是一个计数器  -->
+	<template id="temp">
+		 <h3> 这是子组件 ---{{parentmsg}}</h3>
+	</template>
+	
+	 
+	
+	<div id="app">
+		 <!-- 绑定属性  -->
+	 	 <com1 v-bind:parentmsg="msg"></com1>
+	 	 
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 	
+ 	 
+ 	
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			msg:'父组件信息' 
+		},
+		methods: {
+			 show(){
+				 console.log("父组件的方法 show")
+			 }
+		},
+		//私有组件
+		components:{
+			 
+			com1:{
+				//子组件私有的数据属性，而且属性数据可读可写
+				data(){
+					return {
+						title:'123',
+						content:'qqq'
+					}
+				},
+				methods:{
+					func(){
+						console.log("子组件调用父组件")
+					}
+				},
+				template:'#temp',
+				//props 中的数据都是父组件传过来的，只读不可赋值
+				props:['parentmsg'],
+				directives:{}
+			}
+		}
+	})
+  
+	 
+</script>
+</html>

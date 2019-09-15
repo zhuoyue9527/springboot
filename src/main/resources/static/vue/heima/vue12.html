@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<style type="text/css">
+	.inner {
+		height: 150px;
+		background-color: darkcyan;
+	}
+</style>
+</head>
+<body>
+	<!--  过滤器 -->
+	<div id="app">
+		
+		 
+		 	<div>
+		 		<h3> {{msg}}</h3>
+		 		<h3> {{ msg | msgFormat('可爱','123') | test}}</h3>
+		 	</div>
+			 
+	</div>
+	
+	
+</body>
+
+<script>
+	Vue.filter('msgFormat',function(msg,args,args2){
+		return msg.replace(/学习/g,args +args2)
+	})
+	
+	Vue.filter('test',function(msg ){
+		return msg + "======"
+	})
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			 msg:'过滤器学习 哈哈哈 学习 哈哈哈学习'
+	
+		},
+		methods: {
+	
+		}
+	});
+	
+	
+	  
+	//过滤器语法 
+	//Vue.filter('过滤器名称',function(data){})
+</script>
+</html>

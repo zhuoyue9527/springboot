@@ -35,7 +35,7 @@ public class ChatServer {
 					ch.pipeline().addLast(new HttpServerCodec());
 					
 					//拦截http协议的
-					ch.pipeline().addLast(new HttpHandle());
+					//ch.pipeline().addLast(new HttpHandle());
 				}
 			});
 			//等待客户连接
@@ -53,6 +53,6 @@ public class ChatServer {
 	}
 	
 	public static void main(String[] args) {
-		start();
+//		start();
 	}
 }

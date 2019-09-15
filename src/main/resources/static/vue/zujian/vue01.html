@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	 
+</style>
+</head>
+<body>
+	
+	<template id="templ">
+		<div>
+			<h1>这是template 元素</h1>
+		</div>
+	</template>
+	
+	<template id="login2">
+		<h1> app2私有组件 外部定义 </h1>
+	</template>
+	<div id="app">
+	 	<my-com></my-com>
+	 	<my-com2></my-com2>
+	 	<my-com3></my-com3>
+	 	
+	</div>
+	
+	<div id="app2">
+	 	 <login></login>
+	 	<login2></login2>
+	</div>
+</body>
+
+<script  >
+  // 组件只能有一个根元素
+	var com = Vue.extend({
+		template:'<h3> 这是组件里的</h3>'
+	})
+	
+	Vue.component('myCom',Vue.extend({
+		template:'<h3> 这是组件里的</h3>'
+	}))
+	
+	Vue.component('myCom2', {
+		template:'<div> <h3> 这是组件里的2</h3><span>123</span></div>'
+	})
+	
+	Vue.component('myCom3',Vue.extend({
+		template:'#templ'
+	}))
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			id:'',
+			name:'' ,
+			 
+		},
+		methods: {
+			  
+		}
+	})
+  
+	var vm2 = new Vue({
+		el:'#app2',
+		data:{
+			 
+		},
+		methods: {
+			  
+		},
+		components:{
+			login:{
+				template:'<h1> app2私有组件 </h1>'
+			},
+			login2:{
+				template:'#login2'
+			}
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<style type="text/css">
+	.inner {
+		height: 150px;
+		background-color: darkcyan;
+	}
+</style>
+</head>
+<body>
+	  
+	<div id="app">
+		
+		<div class="">
+		 	<div>
+		 		<h3> 添加品牌</h3>
+		 		
+		 		<p v-fontweight='20' v-fontsize="50"> 自定义标签</p>
+		 	</div>
+			<div>
+				id:<input type="text" v-model="id">
+				<!-- 113 js 键盘码 -->
+				name:<input type="text" v-model="name"  @keyup.f2="add">
+				<!-- name:<input type="text" v-model="name"  @keyup.enter="add"> -->
+				<input type="button" class="" value="add" @click="add" >
+				
+				搜索<input type="text" v-model="keywords" @click="search"  v-focus  >
+			</div>
+			
+			
+		</div>
+		 <table class="">
+		 	<thead>
+		 		<td>id</td>
+		 		<td>name</td>
+		 		<td>ctime</td>
+		 		<td>operation</td>
+		 	</thead>
+		 	<tbody>
+		 		<tr v-for="item in search(keywords)" :key="item.id">
+		 			<td>{{item.id}}</td>
+		 			<td>{{item.name}}</td>
+		 			<td>{{item.ctime | dateFormat() }}</td>
+		 			<td >
+		 			   <a href=""  @click.prevent="del(item.id)">删除</a>
+		 			</td>
+		 		</tr>
+		 	</tbody>
+		 </table>
+	</div>
+	
+	
+</body>
+
+<script  >
+
+	Vue.config.keyCodes.f2 = 113
+	
+	Vue.filter('dateFormat',function(dateString,pattern ="" ){
+		var dt = new Date(dateString)
+		
+		var y = dt.getFullYear()
+		var m = (dt.getMonth() + 1).toString().padStart(2,'0')
+		var d = dt.getDate().toString().padStart(2,'0')
+		
+		
+		
+		if( pattern.toLowerCase() == 'yyyy-mm-dd'){
+			return 	`${y}-${m}-${d}`
+		}else{
+			var hh = dt.getHours();
+			var mm = dt.getMinutes();
+			var ss = dt.getSeconds() ;
+			return `${y}-${m}-${d} ${hh}-${mm}-${ss}`
+		}
+	})
+	
+	Vue.directive('focus',{
+		bind: function(el,bingding){
+			 
+		},
+		inserted:function(el){
+			el.focus()
+		},
+		updated:function(){
+			
+		}
+		
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			id:'',
+			name:'',
+			keywords:'',
+			list:[
+				{id:1,name:'奔驰',ctime:new Date()},
+				{id:2,name:'宝马',ctime:new Date()}
+			]
+	
+		},
+		methods: {
+			  add(){
+				  var car = {id: this.id, name: this.name,ctime: new Date()}
+				  this.list.push(car)
+			  },
+			  del(id){
+				 /*  this.list.some((item,i)=>{
+					  if(item.id == id){
+						  this.list.splice(i,1)
+						  //在数组some方法中 如return true， 就会种植后续循环
+						  return true ;
+					  }
+				  }) */
+				  
+				 var index = this.list.findIndex(item =>{
+					  if(item.id ==id){
+						  return true;
+					  }
+				  })
+				  
+				  
+				  console.log(index)
+				  this.list.splice(index,1)
+			  },
+			  search(keywords){
+				  /* var newList =[]
+				  this.list.forEach(item=>{
+					  if(item.name.indexOf(keywords) != -1){
+						  newList.push(item)
+					  }
+				  })
+				  return newList */
+				  
+				   
+				  var newList = this.list.filter(item =>{
+					  if(item.name.includes(keywords) ){
+						   return item
+					  }
+				  })
+				  return newList
+			  }
+	
+		},
+		directives:{
+			'fontweight':{
+				bind:function(el,binding){
+					el.style.fontWeight = binding.value
+				}
+			},
+			'fontsize': function(el,binding){
+				 el.style.fontsize = parseInt(binding.value) + 'px'
+			}
+		}
+	})
+</script>
+</html>

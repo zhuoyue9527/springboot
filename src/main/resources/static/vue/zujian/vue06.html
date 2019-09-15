@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	.ball{
+		width:15px;
+		height:15px;
+		background-color: red;
+		border-radius:50%;
+	}
+	  
+</style>
+</head>
+<body>
+	
+	<!-- 这是一个计数器  -->
+	<template id="temp">
+		 <h3> 这是登录页面</h3>
+	</template>
+	
+	 
+	
+	
+	<div id="app">
+	 	 <my-com></my-com>
+	 	 <login></login>
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 	//定义全局组件
+ 	var login = {
+ 		template:'#temp'
+ 	}
+ 	 
+ 	Vue.component('myCom',login)
+ 	
+ 	
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			 
+		},
+		methods: {
+			 
+		},
+		//私有组件
+		components:{
+			//'private':login
+			login
+		}
+	})
+  
+	 
+</script>
+</html>

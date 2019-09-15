@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p> {{msg}}</p>
+		<p> {{msg2}}</p>
+		<p v-text="msg2" ></p>
+		<div v-html="msg2"></div>
+		
+		<input type="button" value="按钮"  v-bind:title="mytitle" />
+		<input type="button" value="按钮"  :title="mytitle" />
+		
+		<input type="button" value="按钮2"  v-on:click="show" />
+		<input type="button" value="按钮2"  v-on:mouseover="show" />
+		
+		<input type="button" value="别浪~"  @click="lang" />
+		<input type="button" value="停"  @click="stop" />
+		<div >{{msg3}}</div>
+	</div>
+</body>
+
+<script  >
+	new Vue({
+		el:'#app',
+		data:{
+			msg:'123',
+			msg2:'<h1> hello vue</h1>',
+			mytitle:'这是title',
+			msg3:'猥琐发育，别浪~',
+			intervalId: null
+		},
+		methods: {
+			 
+			show:function(){
+				alert('hellp')
+			},
+			
+			lang(){
+				if(this.intervalId !=null) return;
+				this.intervalId = setInterval( () =>{
+					console.log(this.msg3)
+					var start = this.msg3.substring(0,1)
+					var end = this.msg3.substring(1)
+					this.msg3 =end +start
+				},400)
+				
+			},
+			stop(){
+				clearInterval(this.intervalId)
+				this.intervalId =null			
+			}
+			
+		}
+	})
+</script>
+</html>

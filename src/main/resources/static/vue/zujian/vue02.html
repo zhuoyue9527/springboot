@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	 
+</style>
+</head>
+<body>
+	
+	<template id="templ">
+		<div>
+			<h1>这是template 元素 {{msg}}</h1>
+		</div>
+	</template>
+	
+	
+	<div id="app">
+	 	 <my-com> --- </my-com>
+	 	
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 
+ 	//组件中的data 只能是function 而且返回为对象
+	Vue.component('myCom',{
+		template:'#templ',
+		data:function(){
+			return {
+				msg:'这是组件中数据data msg '
+			}
+		}
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			 
+		},
+		methods: {
+			  
+		}
+	})
+  
+	 
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<style type="text/css">
+	.inner {
+		height: 150px;
+		background-color: darkcyan;
+	}
+</style>
+</head>
+<body>
+	<!-- 阻止外层冒泡事件 -->
+	<!-- <div id="app">
+		<div class="inner" @click="divHandle">
+			 <input type="button" value="按钮" @click.stop="inputHandle">
+		</div>
+	</div> -->
+	
+	<!-- <div>
+	    <a href="http://www.baidu.com" @click.prevent="linkClick"> 跳转</a>
+	</div> -->
+	
+	<!-- 先触发外层，再出发内层  -->
+	<!-- <div id="app">
+		<div class="inner" @click.capture="divHandle">
+			 <input type="button" value="按钮" @click="inputHandle">
+		</div>
+	</div> -->
+	
+	<!-- 只点机自己 时出发  -->
+	<div id="app">
+		<div class="inner" @click.self="divHandle">
+			 <input type="button" value="按钮" @click="inputHandle">
+		</div>
+	</div>
+</body>
+
+<script  >
+	new Vue({
+		el:'#app',
+		data:{
+			 
+		},
+		methods: {
+			inputHandle(){
+				console.log("内层 button")
+			},
+			divHandle(){
+				console.log("外层log")
+			},
+			linkClick(){
+				console.log("出发百度")
+			}
+			 
+			
+		}
+	})
+</script>
+</html>

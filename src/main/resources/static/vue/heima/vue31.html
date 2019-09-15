@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+<!-- 自定义两组样式，自定义动画 -->
+<style type="text/css">
+	.v-enter,
+	.v-leave-to{
+		opacity:0;
+		transform: translateX(150px);
+	}
+	
+	.v-enter-active,
+	.v-leave-active{
+		transition: all 1s ease;
+	}
+
+</style>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="按钮" @click="flag = !flag">
+		
+		<transition>
+			<h3 v-if="flag"  >这是h3</h3>
+		</transition>
+		
+	</div>
+</body>
+
+<script  >
+	new Vue({
+		el:'#app',
+		data:{
+			flag: true
+			 
+		},
+		methods: {
+			 
+		}
+	})
+</script>
+</html>

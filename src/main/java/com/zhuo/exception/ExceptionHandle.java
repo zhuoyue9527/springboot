@@ -14,7 +14,6 @@ public class ExceptionHandle {
 
 	private Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 	
-	
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
 	public ResultMsg handle(Exception e) {

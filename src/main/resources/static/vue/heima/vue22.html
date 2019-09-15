@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		
+		<input type="button" value="get" @click="getInfo" >
+		<input type="button" value="post" @click="postInfo" >
+		<input type="button" value="jsonp" @click="jsonpInfo" >
+	</div>
+</body>
+
+<script  >
+	new Vue({
+		el:'#app',
+		data:{
+			msg:'123'
+			 
+		},
+		methods: {
+			getInfo(){
+				this.$http.get('http://127.0.0.1:8001/user').then(function(result){
+					console.log(result)
+				})
+			},
+			postInfo(){
+				this.$http.post('http://127.0.0.1:8001/postUer',{},{emulateJson:true})
+				.then(result =>{
+					console.log(result)
+				})
+			},
+			jsonpInfo(){
+				this.$http.jsonp('http://127.0.0.1:8001/user').then(result =>{
+					console.log(result)
+				})
+			}
+		}
+	})
+</script>
+</html>

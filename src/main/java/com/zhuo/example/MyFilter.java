@@ -10,7 +10,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import org.springframework.core.annotation.Order;
+
 @WebFilter("/user/home")
+@Order(-1)
 public class MyFilter implements Filter{
 
 	public void init(FilterConfig filterConfig) throws ServletException {

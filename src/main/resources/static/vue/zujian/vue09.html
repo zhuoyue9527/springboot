@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+<link rel="stylesheet" href="../../css/bootstrap.css">
+ 
+<style type="text/css">
+	 
+	  
+</style>
+</head>
+<body>
+	
+	 <template id="temp">
+	 	<div>
+		 	<h1> 这是子组件</h1>		 
+			<input type="button" value="子组件中 调用父组件的show" @click="myclick">
+	 	</div>
+	</template>
+	
+	
+	<div id="app">
+	 	 <ul class="list-group">
+	 	 	<li class="list-group-item" v-for="(item,i) in list" :key='i'>
+	 	 		<span class="badge">
+	 	 			评论人： {{item.user}}
+	 	 		</span>
+	 	 		{{item.content}}
+	 	 	</li>
+	 	 </ul> 
+	 	  
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 	
+ 	var com2 = {
+ 			template:'#temp',
+ 			data(){
+ 				return {
+ 					sonmsg:{name:'你好',age:18}	
+ 				}
+ 			},
+ 			methods:{
+ 				myclick(){
+ 					//console.log("ok")
+ 					this.$emit('func',this.sonmsg)
+ 				}
+ 			}
+ 	}
+ 	
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			list:[
+				{id:Date.now(),user:'李白',content:'天生我才'},
+				{id:Date.now(),user:'白居易',content:'天生 '},
+				{id:Date.now(),user:'温庭筠',content:' 我才'},
+			]
+		},
+		methods: {
+			 show(data){
+				 this.datafromson = data
+				 console.log(data)
+			 }
+		},
+		//私有组件
+		components:{
+			com2
+		}
+	})
+  
+	 
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	.ball{
+	  	width:15px;
+	  	height:15px;
+	  	boder-redius:50%;
+	  	background-color:red;
+	}
+
+</style>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="按钮" @click="flag = !flag">
+		
+		<transition 
+			@before-enter="beforeEnter"
+			@enter="enter"
+			@after-enter="afterEnter">
+				<div v-show="flag" class="ball"></div>
+		</transition>
+
+		
+	</div>
+</body>
+
+<script  >
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			flag: false
+		},
+		methods: {
+			beforeEnter(el){
+				//开始之前的位置
+				el.style.transform = "translate(0,0)"
+			},
+			enter(el,done){
+				// 加上这句话 强制动画刷新 有这个过程
+				el.offsetWidth
+				//结束时的位置
+				el.style.transform = "translate(150px,150px)"
+				el.style.transition = 'all 2s ease'
+				
+				//执行完后直接消失 时间快点 是调用了done()函数
+			    done()
+			},
+			afterEnter(el){
+				console.log('ok')
+				this.flag = !this.flag
+			}
+		}
+	})
+</script>
+</html>

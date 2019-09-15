@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<style type="text/css">
+	.inner {
+		height: 150px;
+		background-color: darkcyan;
+	}
+</style>
+</head>
+<body>
+	 <!--  v-for 数子，数组 对象 -->
+	<div id="app">
+		<!-- <p v-for="(item,i) in list">
+			{{i}}==={{item}}
+		</p> -->
+		
+		<!-- <p v-for="(user,i) in list2">
+			{{i}}--{{user.id}}==={{user.name}}
+		</p> -->
+		<!--  值 建-->
+		<!-- <p v-for="(val,key,i) in user">
+			 {{val}}==={{key}} --{{i}}
+		</p> -->
+		 
+		<!-- <p v-for="count in 10">
+			 {{count}} 
+		</p> -->
+		
+		<label>id:
+			<input type="text" v-model="id" >
+		</label>
+		
+		<label>name:
+			<input type="text" v-model="name" >
+		</label>
+		
+		<input type="button" value="添加"  @click="add"> 
+		
+		 <p v-for="item in list2" :key="item.id">
+		     <input type="checkbox" />
+			 {{item.name}}  
+		 </p>
+	</div>
+	
+	
+</body>
+
+<script  >
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			id:'',
+			name:'',
+			list:[1,2,3,4],
+			list2:[
+				{id:1,name:'hello'},
+				{id:2,name:'world'}
+			],
+			user:{
+				id:1,
+				name:'nihao',
+				gender:'nan'
+			}
+		},
+		methods: {
+			 add(){
+				 /* this.list2.push({id:this.id,name:this.name}) */
+				 this.list2.unshift({id:this.id,name:this.name})
+			 } 
+	
+		}
+	})
+</script>
+</html>

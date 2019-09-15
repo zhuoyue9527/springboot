@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	 
+</style>
+</head>
+<body>
+	
+	<!-- 这是一个计数器  -->
+	<template id="templ">
+		<div>
+			<input type ="button" value="+1" @click ="increment">
+			<h1>{{count}}</h1>
+		</div>
+	</template>
+	
+	
+	<div id="app">
+	 	 <counter> </counter>
+	 	
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 
+ 	var dataObj = {count:0}
+ 	//组件中的data 只能是function 而且返回为对象
+	Vue.component('counter',{
+		template:'#templ',
+		data:function(){
+			return  {count:0}
+		},
+		methods:{
+			increment(){
+				this.count ++
+			}
+		}
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			 
+		},
+		methods: {
+			  
+		}
+	})
+  
+	 
+</script>
+</html>

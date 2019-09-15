@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/vue-resource.js"></script>
+
+ 
+<style type="text/css">
+	 .v-enter,
+	 .v-leave-to{
+	 	opacity:0;
+	 	transform: translateX(150px);
+	 }
+	 
+	 .v-enter-active,
+	 .v-leave-active{
+	 	
+	 	transition: all 0.5s ease ;
+	 }
+</style>
+</head>
+<body>
+	
+	<!-- 这是一个计数器  -->
+	<template id="login">
+		 <h3> 这是登录页面</h3>
+	</template>
+	
+	<template id="register">
+		 <h3> 这是注册页面</h3>
+	</template>
+	
+	
+	<div id="app">
+	 	  
+	 	<a href="" @click.prevent="comName='login'">登录</a>
+	 	<a href="" @click.prevent="comName='register'">注册</a>
+	 	
+	 	<!--  mode设置组件切换时的模式 -->
+	 	<transition mode="out-in">
+	 	<component :is="comName" ></component>
+	 	</transition>
+	 	
+	</div>
+	
+	 
+</body>
+
+<script  >
+ 
+ 	var dataObj = {count:0}
+ 	//组件中的data 只能是function 而且返回为对象
+	Vue.component('login',{
+		template:'#login',
+		 
+	})
+	Vue.component('register',{
+		template:'#register',
+		 
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			comName:'login' 
+		},
+		methods: {
+			login(){
+				this.flag = true
+			},
+			register(){
+				this.flag = false
+			}
+		}
+	})
+  
+	 
+</script>
+</html>

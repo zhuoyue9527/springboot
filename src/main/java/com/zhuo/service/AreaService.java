@@ -7,13 +7,12 @@ import com.zhuo.exception.ExceptionEnums;
 
 @Service
 public class AreaService {
-
 	
 	public void areaId (Integer id) throws Exception {
 		if(id.equals(2)) {
 			throw new AreaException(ExceptionEnums.SERVICE_ERROR);
 		}else {
-			throw new Exception(ExceptionEnums.UNKNOWN_ERROR.getMessage());
+			throw new AreaException(ExceptionEnums.UNKNOWN_ERROR);
 		}
 	}
 }
